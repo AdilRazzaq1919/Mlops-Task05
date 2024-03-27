@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Your Info</title>
+    <script>
+        async function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const response = await fetch('http://192.168.18.123:5000/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, email})
+            });
+
+            const data = await response.json();
+            alert(JSON.stringify(data));
+        }
+    </script>
+</head>
+<body>
+    <h2>Submit Your Information</h2>
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <button onclick="submitForm()">Submit</button>
+</body>
+</html>
